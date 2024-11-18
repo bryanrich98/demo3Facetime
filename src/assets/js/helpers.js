@@ -108,21 +108,27 @@ export default {
 
 
     getIceServer() {
-        return {
-            iceServers: [
-                {
-                    urls: ["stun:eu-turn4.xirsys.com"]
-                },
-                {
-                    username: "ml0jh0qMKZKd9P_9C0UIBY2G0nSQMCFBUXGlk6IXDJf8G2uiCymg9WwbEJTMwVeiAAAAAF2__hNSaW5vbGVl",
-                    credential: "4dd454a6-feee-11e9-b185-6adcafebbb45",
-                    urls: [
-                        "turn:eu-turn4.xirsys.com:80?transport=udp",
-                        "turn:eu-turn4.xirsys.com:3478?transport=tcp"
-                    ]
-                }
-            ]
-        };
+        return fetch('https://global.xirsys.net/_turn/facetime', {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Basic ' + btoa('072f9d40-7f62-11ef-b1a4-0242ac150002:'), // API token
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            return {
+                iceServers: data.v.iceServers
+            };
+        })
+        .catch(err => {
+            console.error('Error fetching ICE servers: ', err);
+            return {
+                iceServers: [
+                    { urls: "stun:stun.l.google.com:19302" } // Fallback STUN server
+                ]
+            };
+        });
     },
 
 
