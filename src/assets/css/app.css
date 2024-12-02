@@ -1,10 +1,29 @@
+#create-room {
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+#create-room:hover {
+    background-color: darkred;
+}
+
+.header-box-red {
+    background-color: red !important;
+    padding: 10px;
+}
+
+.navbar-red {
+    background-color: red;
+}
+
 .chat-col{
     right: -100vw;
     bottom: 0;
     top: 40.5px;
     z-index: 1000;
     position: fixed;
-    color: #fff;
+    color: gold;
     padding-right: 5px;
     padding-left: 5px;
     padding-bottom: 40px;
@@ -67,38 +86,50 @@
 }
 
 
-.remote-video{
-    width:100%;
-    height:auto;
+.remote-video, .local-video {
+    width: 48%; /* Adjust width to ensure they fit side by side */
+    height: auto;
     max-height: 90vh;
+    display: inline-block; /* Ensures they line up side by side */
+    vertical-align: top; /* Aligns the videos vertically */
+    position: static; /* Removes the fixed position of .local-video */
 }
 
-
-.remote-video-controls{
-    position:absolute;
+.remote-video-controls {
+    position: absolute;
     bottom: 0;
-    background-color:rgba(0, 0, 0, 0.5);
-    z-index:300000;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 300000;
     padding: 10px;
     width: 100%;
     text-align: center;
     visibility: hidden;
 }
 
-
 .remote-video:hover + .remote-video-controls,
-.remote-video-controls:hover{
+.remote-video-controls:hover {
     visibility: visible;
 }
 
-
-.local-video{
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    width:15vw;
+.video-container {
+    display: flex; /* Flexbox for horizontal alignment */
+    flex-wrap: wrap; /* Allow videos to wrap to a new line if space is insufficient */
+    gap: 10px; /* Optional spacing between videos */
+    justify-content: center; /* Center videos horizontally */
+    align-items: flex-start; /* Align videos at the top */
+    padding: 10px; /* Add padding around the container */
+    width: 100%;
+    height: auto; /* Let the height adapt */
+    box-sizing: border-box;
 }
 
+.video-container video {
+    width: 48%; /* Each video takes 48% of the container width */
+    height: auto;
+    max-height: 90vh; /* Restrict height to avoid overflow */
+    position: static !important;
+    background-color: #000; /* Optional: Background for better contrast */
+}
 
 .mirror-mode{
     -ms-transform: scaleX(-1);
@@ -156,7 +187,7 @@
 .record-option{
     height: 200px;
     border-radius: 10%;
-    border: 1px solid #17a2b8;
+    border: 1px solid #ff4646;
     cursor: pointer;
     padding: 10px;
     vertical-align: middle;
@@ -176,10 +207,10 @@
 
 
 .custom-modal-content {
-    background-color: #fefefe;
+    background-color: #ffd700;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #17a2b8;
+    border: 1px solid #ff4646;
     width: 80%;
 }
 
@@ -229,4 +260,8 @@
         width: 50%;
         z-index: 1000;
     }
+}
+
+.container-fluid {
+    background-color: gold;
 }
